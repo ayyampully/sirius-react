@@ -1,0 +1,51 @@
+*{transition: all cubic-bezier(0.1, 0.94, 0.51, 0.98) 400ms;}
+.svg-wrap {
+	float:left;
+	float: left;
+	padding: 10px 21px;
+	position:relative;
+	margin: 20px 00px 20px 20px;
+	min-width: 340px;
+	background: #f9f9f9;
+	
+}
+h4{
+	font-size: 24px;
+	font-family: 'open_sansregular';
+}
+.pie-chart{
+	overflow: hidden;
+    margin: 0 auto;
+    display: block;
+	
+}
+.svg-wrap.scaled .pie-chart {
+	scale:0;
+	transform: rotate(240deg);
+}
+.legends {
+	display:block;
+	margin: 15px 0 25px;
+    overflow: hidden;
+}
+.legends li {
+	width: 33%;
+    text-align: center;
+    float: left;
+	opacity: 1;
+	font-size: 12px;
+}
+.legends li span{ display: block;
+    font-size: 20px;}
+.svg-wrap.scaled li{opacity: 0}
+.total{position: absolute;
+    top: 115px;
+	opacity: 1;
+    left: 44.5%;
+    text-align: center;
+    font-size: 16px;}
+.svg-wrap.scaled .total{opacity: 0}
+.total span{    display: block;
+    font-size: 24px;}
+.view-more{    font-size: 12px;
+    float: right;}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Chartbox from '../../widgets/chartbox/Chartbox';
 import './Overview.css';
 
 class Overview extends Component {
@@ -7,7 +8,8 @@ class Overview extends Component {
     this.state = {
       projectData: {
         title: "DemiGod-v1",
-        description: "Praesent nisl est, congue sollicitudin justo ac, aliquam bibendum arcu. Nulla vel magna et ex sollicitudin varius. Sed interdum fringilla lacus. Suspendisse in ante id nisi vehicula venenatis sed vitae elit. Aliquam tristique a leo ac fermentum. Praesent gravida sagittis mauris, id pellentesque sapien tincidunt vitae.",
+        projectId: 1,
+        description: "This is the first project listed in sirius. Praesent nisl est, congue sollicitudin justo ac, aliquam bibendum arcu. Nulla vel magna et ex sollicitudin varius. Sed interdum fringilla lacus. Suspendisse in ante id nisi vehicula venenatis sed vitae elit. Aliquam tristique a leo ac fermentum. Praesent gravida sagittis mauris, id pellentesque sapien tincidunt vitae.",
         flagurl:""
       },
       member : {
@@ -19,6 +21,16 @@ class Overview extends Component {
         className: "icon color-1",
         role: 'UI Developer'
       }
+    }
+
+    this.features = {
+      "label":"Features",
+      "data":[
+        {"label":"Completed","count":4},
+        {"label":"In progress","count":3},
+        {"label":"Pending","count":1}
+      ],
+      "total":8,
     }
   }
   render() {
@@ -60,6 +72,7 @@ class Overview extends Component {
             <h4>Sprint review</h4>
             
         </div>
+        <Chartbox projectData={this.features} projectId={this.state.projectData.projectId} />
       </div>
       </div>
     );
