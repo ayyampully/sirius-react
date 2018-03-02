@@ -1,0 +1,52 @@
+.overview{display: flex;   
+    flex-direction: column;  flex: 1;}
+.row{display: flex; margin: 5px 20px;}
+.box-2{  flex: 1;     margin-top: 20px;}
+.box-4{width: 340px; background: #f9f9f9;      float: left;
+    padding: 10px 12px;
+    position: relative;
+    margin: 20px 0px 0px 20px;}
+h4{    font-size: 24px;
+    font-family: 'open_sansregular';}
+  .notifications{height: 350px; overflow: auto}  
+.notifications li:first-child{border:none}
+.notifications li{background: #f9f9f9;
+    border-top: 1px solid #eee;
+    float: left;
+    width: 100%;
+    padding: 7px 5px;}
+.notifications li span{float: left;
+    width: 30px; background: #b70e36;
+    color: #f9f9f9;
+    height: 30px;
+        line-height: 30px;
+    cursor: default;
+    margin-right: 10px;
+    border-radius: 100%;
+    text-align: center;}
+
+.color-0{background: #b70e36;
+    color: #f9f9f9;}
+.color-1{background: #e3e46a;
+    color: #43504d;}
+.color-2{background: #7412bf;
+    color: #f9f9f9;}
+.members li{color: #00a1ed;     float: left;
+    width: 100%;  line-height: 40px;
+    margin-top: 10px;}
+.members span.icon{float: left;
+    width: 40px;
+    height: 40px;
+    font-family: 'open_sanssemibold';
+    cursor: default;
+    margin-right: 10px;
+    border-radius: 100%;
+    text-align: center;
+}
+.members .desc{float: left}
+.members .desc p{float: left; clear: both; line-height: normal;}
+.members .desc span{float: left;
+    clear: both;
+    color: #7da1b1;
+    text-transform: capitalize;
+    line-height: normal;}

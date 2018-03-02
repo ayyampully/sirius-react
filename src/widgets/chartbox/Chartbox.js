@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import {YELLOW_THEME, BLUE_THEME} from '../../constants/color';
 import './Chartbox.css';
 
 class Chartbox extends Component {
   constructor(props){
     super(props);
-    this.projectId = this.props.projectId;
     this.overflow = {overflow: 'hidden'}
     const pdata = this.props.projectData;
     var theme = pdata.label==="Features" ? BLUE_THEME : YELLOW_THEME;
-    this.drawPie(pdata, theme)
+    this.drawPie(pdata, theme);
+    this.projectUrl = "/projects/" + this.props.projectId;
   }
 
   drawPie(pdata, theme){
@@ -54,10 +55,6 @@ class Chartbox extends Component {
   
     removeScaledClass();
   }
-  gotoDetails(e) {
-    e.preventDefault();
-    let projid = this.projectId ? this.projectId : 0;
-  }
   render() {
     var chart = [];
     if(this.props.isFullCircle){
@@ -84,7 +81,7 @@ class Chartbox extends Component {
         </svg>
         <div className="total"><span>{this.props.projectData.total}</span>Total</div>
         <ul className="legends">{listItems}</ul>
-        <a onClick={this.gotoDetails.bind(this)} className="view-more">View Details</a>
+        <Link className="view-more" to={this.projectUrl}>View Details</Link>
       </div>
 
     );
