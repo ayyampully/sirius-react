@@ -1,40 +1,49 @@
-.overview{display: flex;   
-    flex-direction: column;  flex: 1;}
-.row{display: flex; margin: 5px 20px;}
-.box-2{  flex: 1;     margin-top: 20px;}
-.box-4{width: 340px; background: #f9f9f9;      float: left;
-    padding: 10px 12px;
-    position: relative;
-    margin: 20px 0px 0px 20px;}
-h4{    font-size: 24px;
-    font-family: 'open_sansregular';}
-  .notifications{height: 350px; overflow: auto}  
-.notifications li:first-child{border:none}
-.notifications li{background: #f9f9f9;
-    border-top: 1px solid #eee;
-    float: left;
-    width: 100%;
-    padding: 7px 5px;}
-.notifications li span{float: left;
-    width: 30px; background: #b70e36;
-    color: #f9f9f9;
-    height: 30px;
-        line-height: 30px;
-    cursor: default;
-    margin-right: 10px;
-    border-radius: 100%;
-    text-align: center;}
+.detailview-wrap{display: flex; padding: 10px;}
+.box-1{flex:1; margin: 10px; padding: 20px; background: #f9f9f9;}
+.box-3{flex:3; margin: 10px; padding: 20px; background: #f9f9f9}
 
+.detailview-header .icon{background: #b70e36; color: #f9f9f9; font-family: 'open_sanssemibold'; cursor: default; margin-top: 3px;
+    float:left; height: 50px; width: 50px; line-height: 50px; font-size: 24px; text-align: center; border-radius: 100%}
+.detailview-header .title-wrap{float:left; margin-left: 15px; width: 80%;}
+.edit-btn{float: right;
+    font-size: 20px;
+    cursor: pointer;
+    color: #37b3ed;}
+.edit-btn:hover{color:#0493d6}
+.detailview-header{ margin-bottom: 10px;
+    float: left;
+    width: 100%;}
+.detailview-header h2{font-family: 'open_sanslight'; font-size: 30px; }
+.details{margin-top:15px; float: left; width: 100%;}
+.details h4{font-family: 'open_sanssemibold'; font-size: 16px;}
+.details ul.list{float: left; width: 33%;}
+.details ul.list > li{font-family: 'open_sanssemibold'; margin-bottom: 12px;}
+.details ul.list li span, .details ul.list li a{font-family: 'open_sansregular'; margin-left: 10px;}
+.details ul.list li span{text-transform: capitalize;}
+.details ul.list li label{}
+.details ul.list li span.status{    padding: 0px 5px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    color: #fff; font-family: 'open_sanssemibold';}
+span.open{background: #32b7f6;}
+span.completed{background: #00980e;}
+span.progress{background: #e8ba00;}
+span.unassigned{background: #e65700;}
+span.behind{background: #bf0505;}
+.blur{
+    -webkit-filter: blur(3px); /* Chrome, Safari, Opera */
+    filter: blur(3px);
+}
 .color-0{background: #b70e36;
     color: #f9f9f9;}
 .color-1{background: #e3e46a;
     color: #43504d;}
 .color-2{background: #7412bf;
     color: #f9f9f9;}
-.members li{color: #00a1ed;     float: left;
+.watchers-wrap li{color: #00a1ed;     float: left;
     width: 100%;  line-height: 40px;
     margin-top: 10px;}
-.members span.icon{float: left;
+.watchers-wrap span{float: left;
     width: 40px;
     height: 40px;
     font-family: 'open_sanssemibold';
@@ -43,10 +52,3 @@ h4{    font-size: 24px;
     border-radius: 100%;
     text-align: center;
 }
-.members .desc{float: left}
-.members .desc p{float: left; clear: both; line-height: normal;}
-.members .desc span{float: left;
-    clear: both;
-    color: #7da1b1;
-    text-transform: capitalize;
-    line-height: normal;}
