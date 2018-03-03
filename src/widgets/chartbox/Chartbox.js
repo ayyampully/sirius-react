@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {YELLOW_THEME, BLUE_THEME} from '../../constants/color';
 import './Chartbox.css';
 

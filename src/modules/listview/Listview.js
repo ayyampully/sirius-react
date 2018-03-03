@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import Heatmap from '../../widgets/heatmap/Heatmap';
 import './Listview.css';
 
 class Listview extends Component {
-  constructor(){
+  constructor({match}){
     super();
     this.state = {}
+    this.state.match = match;
     this.state.ticketList = {
       "title" : "DEMIGOD",
       "owner" : {
@@ -48,9 +50,11 @@ class Listview extends Component {
     let rows = [];
     this.state.ticketList.tickets.forEach(ticket => {
       let modifiedddate = ticket.modifiedddate.toLocaleString();
+      let url = this.state.match.url + '/' + ticket.ticketid;
       rows.push(<tr key={ticket.ticketid}>
         <td className="checkbox"><input type="checkbox" name="select-item"/></td>
-        <td><a onClick={this.gotoDetails.bind(this, ticket.ticketid)}><span>{ticket.ticketid}</span>- {ticket.title}</a></td>
+        <td><Link className="view-more" to={url}><span>{ticket.ticketid}</span>- {ticket.title}</Link>
+          </td>
         <td>{ticket.createdby.name}</td>
         <td>{modifiedddate}</td>
         <td className="capitalize">{ticket.priority}</td>

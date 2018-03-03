@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Overview from './modules/overview/Overview';
 import Listview from './modules/listview/Listview';
+import Detailview from './modules/detailview/Detailview';
 import logo from './assets/images/sirius.png';
 import './App.css';
-
+import './assets/font-awesome-4.6.3/css/font-awesome.min.css';
 class App extends Component {
   render() {
     return (
@@ -30,6 +31,7 @@ class App extends Component {
             <div className="main-content">
               <Route exact path="/" component={Overview}/>
               <Route path="/projects/:id" component={Listview}/>
+              <Route path="/projects/:id/:ticket" component={Detailview}/>
             </div>
           </Router>
         
