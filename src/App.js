@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Overview from './modules/overview/Overview';
-import Detailview from './modules/detailview/Detailview';
+import Listview from './modules/listview/Listview';
 import logo from './assets/images/sirius.png';
 import './App.css';
 
@@ -25,10 +25,14 @@ class App extends Component {
             <li><i className="fa fa-cog" aria-hidden="true"></i>  <span>Settings</span></li>
           </ul>
         </div>
-        <div className="main-content">
-          <Router><Route exact path="/" component={Overview}/></Router>
-          <Router><Route path="/projects/:id" component={Detailview}/></Router>
-        </div>
+        
+          <Router>
+            <div className="main-content">
+              <Route exact path="/" component={Overview}/>
+              <Route path="/projects/:id" component={Listview}/>
+            </div>
+          </Router>
+        
       </div>
       <footer>
         <p>Made with <span>♥</span></p>

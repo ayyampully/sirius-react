@@ -56,19 +56,22 @@ class Chartbox extends Component {
     removeScaledClass();
   }
   render() {
-    var chart = [];
+    let chart = [];
+    let label = this.props.projectData.label;
     if(this.props.isFullCircle){
       chart = <circle  cx="100" cy="100" r="92" fill={this.props.isFullCircle} stroke="#f9f9f9" strokeWidth="1"></circle>
     } else {
-      this.svgpath.forEach(data =>{
-        chart.push(<g className={data.cssClass} key={data.dataValue} ><path d={data.path} className="tooltip svgpath" data-value={data.dataValue}
+      this.svgpath.forEach((data, i) =>{
+        let key = data.cssClass + label + i;
+        chart.push(<g className={data.cssClass} key={key} ><path d={data.path} className="tooltip svgpath" data-value={data.dataValue}
               fill={data.color} stroke="#f9f9f9" strokeWidth="1"></path>
         </g>)
       });
     }
     var listItems = [];
     this.props.projectData.data.forEach((data, i) =>{
-      listItems.push(<li data-class={data.cssClass} key={i} className="legends-item">
+      let key = data.cssClass + label + i;
+      listItems.push(<li data-class={data.cssClass} key={key} className="legends-item">
           <span>{data.count}</span>{data.label}
       </li>);
     });
@@ -80,7 +83,7 @@ class Chartbox extends Component {
             <g> <circle cx="100" cy="100" r="40" fill="#f9f9f9" stroke="#f9f9f9" strokeWidth="1"></circle></g>
         </svg>
         <div className="total"><span>{this.props.projectData.total}</span>Total</div>
-        <ul className="legends">{listItems}</ul>
+        <ul className="legends-chart">{listItems}</ul>
         <Link className="view-more" to={this.projectUrl}>View Details</Link>
       </div>
 

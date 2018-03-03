@@ -32,6 +32,15 @@ class Overview extends Component {
       ],
       "total":8,
     }
+    this.bugs = {
+      "label":"Bugs",
+      "data":[
+        {"label":"Completed","count":2},
+        {"label":"In progress","count":1},
+        {"label":"Pending","count":1}
+      ],
+      "total":4,
+    }
   }
   render() {
     return (
@@ -73,6 +82,7 @@ class Overview extends Component {
             
         </div>
         <Chartbox projectData={this.features} projectId={this.state.projectData.projectId} />
+        <Chartbox projectData={this.bugs} projectId={this.state.projectData.projectId} />
       </div>
       </div>
     );

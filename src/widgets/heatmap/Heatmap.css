@@ -1,0 +1,23 @@
+.review-box{     float: left;
+    overflow: hidden;
+    border-bottom: 1px solid #eee;
+    width: 100%; min-height: 152px;
+	padding: 20px 20px 0;}
+.sprint-box{background:#f5f5f5 url("/assets/images/chart-bg-11x.png"); float: left; height: 95px; width: 100%; border: 1px solid #ededed;}
+.sprint-box .col{float: left; width:11px; margin-left: 1px;}
+.sprint-box .col:first-child{margin-left:0}
+.sprint-box span{width: 11px; margin-top: 1px;
+	height: 11px; display: block;}
+.sprint-box .col span:first-child{margin-top: 0;}
+
+span.open{background: #32b7f6;}
+span.completed{background: #00980e;}
+span.progress{background: #e8ba00;}
+span.unassigned{background: #e65700;}
+span.behind{background: #bf0505;}
+
+.sprint-legends{float: left; width: 100%; font-family: 'open_sanssemibold'; margin-top: 7px}
+p.status{color:#009704; float: left;}
+ul.legends{float: right;}
+ul.legends li{float: left; margin-left: 12px}
+ul.legends li span{width: 11px; height: 11px; display: inline-block;}

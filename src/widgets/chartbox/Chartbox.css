@@ -28,14 +28,14 @@ h4{
 	margin: 15px 0 25px;
     overflow: hidden;
 }
-.legends li {
+.legends-chart li {
 	width: 33%;
     text-align: center;
     float: left;
 	opacity: 1;
 	font-size: 12px;
 }
-.legends li span{ display: block;
+.legends-chart li span{ display: block;
     font-size: 20px;}
 .svg-wrap.scaled li{opacity: 0}
 .total{position: absolute;
