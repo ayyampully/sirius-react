@@ -6,7 +6,27 @@ import Detailview from './modules/detailview/Detailview';
 import logo from './assets/images/sirius.png';
 import './App.css';
 import './assets/font-awesome-4.6.3/css/font-awesome.min.css';
+
+import Store from './store/Store';
+
 class App extends Component {
+  constructor(){
+    super();
+    this.initStore();
+  }
+  initStore(){
+    
+    Store.subscribe(() => {
+      console.log(JSON.stringify(Store.getState()));
+    });
+    Store.dispatch({type: 'NEW_COMMENT', payload: {
+        name: 'Rohith Ayyampully',
+        action: 'comment',
+        projectId: 1,
+        ticket: 'DEMIGOD-01'
+    }});
+
+  }
   render() {
     return (
       <div className="container">
