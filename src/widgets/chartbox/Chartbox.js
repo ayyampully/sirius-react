@@ -6,13 +6,15 @@ import './Chartbox.css';
 class Chartbox extends Component {
   constructor(props){
     super(props);
+    this.init();
+  }
+  init(){
     this.overflow = {overflow: 'hidden'}
     const pdata = this.props.projectData;
     var theme = pdata.label==="Features" ? BLUE_THEME : YELLOW_THEME;
     this.drawPie(pdata, theme);
     this.projectUrl = "/projects/" + this.props.projectId;
   }
-
   drawPie(pdata, theme){
     var cx = 100,
       cy = 100,

@@ -1,0 +1,60 @@
+.autocomplete-wrap{position: relative;
+    display: inline-block; padding: 4px 15px 4px 0; background: #fff;
+    border-radius: 2px; cursor: pointer; min-width: 150px;
+    border: solid 1px #ccc;}
+.autocomplete-wrap:hover .drop-arrow{color: #888;}
+.autocomplete-wrap span{z-index: 2; margin-left: 10px; font-family: 'open_sansregular';
+    position: relative; cursor: pointer; display: inline-block;
+}
+
+.autocomplete-wrap .drop-arrow{position: relative; top: 3px; left: 9px; padding-left: 5px; float: right;
+    border-left: 1px solid #ccc; color:#ccc; cursor: pointer;}
+.autocomplete-wrap input.text{    border: none; outline: none;
+    border-bottom: 2px solid #eee; transition: border ease-in 300ms;
+    padding: 8px 8px;
+    font-size: 14px;
+    margin: 0 10px 10px;
+    width: 220px;
+    font-family: 'open_sanslight';
+    color: #47778d;}
+.autocomplete{  position: absolute;
+    z-index: 3; transition: all cubic-bezier(0.1, 0.94, 0.51, 0.98) 400ms;
+    background: #f5f5f5;
+    min-width: 150px;
+    border: 1px solid #ccc;
+    top: 27px;
+    left: -1px;
+    display: none;
+    border-radius: 2px;
+    }
+.autocomplete.show{display: block}
+.autocomplete button{position: absolute;
+    right: 10px; 
+    background: none;
+    cursor: pointer;
+    top: 5px;
+    font-size: 18px;
+    padding: 0;
+    border: none;}
+.autocomplete .fa-check{color:#00980e; margin-top: 4px;}
+.autocomplete button:active .fa-check{color:#02790d}
+.autocomplete ul{    overflow: auto;
+    max-height: 182px;}
+.autocomplete li{padding: 8px 10px 9px; cursor: pointer; font-family: 'open_sansregular'; border-top: 1px solid #eee;}
+.autocomplete input:focus{border-bottom: 2px solid #37b3ed;}
+.autocomplete li:hover{background: #eee}
+
+.autocomplete .fa{float:right;     font-size: 16px;}
+.autocomplete .fa-chevron-down{ color:#e8ba00}
+.autocomplete .fa-chevron-up{ color:#e65700}
+.autocomplete .fa-minus{ color:#32b7f6; margin-right: 1px;    margin-top: 2px;}
+.autocomplete .fa.urgent{ color:#bf0505}
+
+.autocomplete .fa-code-fork{ color:#02790d;  font-size: 21px;}
+.autocomplete .fa-flag{ color:#bf0505}
+.autocomplete .fa-cube{ color:#47778d}
+
+.editOverlay.autocomplete-wrap{ padding: 8px 15px 8px 0; min-width: 250px;}
+.editOverlay.autocomplete-wrap .drop-arrow{left: 6px; padding-left: 8px; }
+.editOverlay.autocomplete-wrap .autocomplete{top: 35px; min-width: 250px;}
+

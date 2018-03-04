@@ -18,9 +18,9 @@
 .details h4{font-family: 'open_sanssemibold'; font-size: 16px;}
 .details ul.list{float: left; width: 33%;}
 .details ul.list > li{font-family: 'open_sanssemibold'; margin-bottom: 12px;}
-.details ul.list li span, .details ul.list li a{font-family: 'open_sansregular'; margin-left: 10px;}
+.details ul.list li span, .details ul.list li a{font-family: 'open_sansregular'; }
 .details ul.list li span{text-transform: capitalize;}
-.details ul.list li label{}
+.details ul.list li label{margin-right: 5px;}
 .details ul.list li span.status{    padding: 0px 5px;
     border-radius: 2px;
     text-transform: uppercase;
