@@ -3,92 +3,34 @@ import Chartbox from '../../widgets/chartbox/Chartbox';
 import './Detailview.css';
 
 class Detailview extends Component {
-  constructor(){
+  constructor({match}){
     super();
     this.state = {};
-    this.state.ticketDetails = {
-      "title" : "Add the thumbnail for users",
-      "ticketid" : "DEMIGOD-01",
-      "createddate" : new Date("2016-11-14T11:20:48.486Z"),
-      "modifiedddate" : new Date("2017-04-14T09:24:06.369Z"),
-      "status" : "open",
-      "type" : "feature",
-      "priority" : "high",
-      "description" : "This is the description of a demigod ticket. blah blah. Donec urna neque, mattis at lorem et, volutpat tempor neque. Nunc ut imperdiet urna, sodales dictum erat. Integer sollicitudin mattis tortor, tempor tempus velit consectetur in. Vestibulum blandit ipsum eget lacus ultricies scelerisque. Quisque facilisis dictum consequat. Sed aliquet gravida fringilla. Aenean nulla diam, rutrum a molestie at, laoreet quis nulla. Donec nibh elit, luctus ac quam porttitor, ultricies vestibulum felis. Aenean commodo, metus ut elementum bibendum, risus sem condimentum massa, quis fermentum arcu nisi sit amet dui. In quam ex, tempor ut arcu at, eleifend auctor neque. Fusce volutpat nibh hendrerit orci semper dictum sit amet eu turpis.",
-      "comments" : [ 
-          {
-              "message" : "Someone going crazy",
-              "createddate" : new Date("2016-11-14T11:20:48.486Z"),
-              "createdby" : {
-                  "uid" : 1,
-                  "login" : "rohith.ayyampully@gmail.com",
-                  "name" : "Rohith Ayyampully"
-              }
-          }, 
-          {
-              "message" : "Hellooo",
-              "createddate" : new Date("2016-11-14T11:57:28.548Z"),
-              "createdby" : {
-                  "login" : "rohith.ayyampully@gmail.com",
-                  "name" : "Ayyampully, Rohith",
-                  "uid" : 1
-              }
-          }, 
-          {
-              "message" : "aas",
-              "createddate" : new Date("2017-04-14T09:24:06.364Z"),
-              "createdby" : {
-                  "login" : "rohith.ayyampully@gmail.com",
-                  "name" : "Ayyampully, Rohith",
-                  "uid" : 1
-              }
-          }
-      ],
-      "tags" : [ 
-          "Array"
-      ],
-      "subtickets" : [],
-      "attachments" : [],
-      "watchers" : [ 
-          {
-              "uid" : 1,
-              "login" : "rohith.ayyampully@gmail.com",
-              "icon" : "RA",
-              "name" : {
-                  "first" : "Rohith",
-                  "last" : "Ayyampully"
-              }
-          }, 
-          {
-              "uid" : 3,
-              "login" : "Koenigsegg.Agera@abc.com",
-              "icon" : "KA",
-              "name" : {
-                  "first" : "Koenigsegg",
-                  "last" : "Agera"
-              }
-          }
-      ],
-      "assignedto" : {
-          "uid" : 1,
-          "login" : "rohith.ayyampully@gmail.com",
-          "name" : "Rohith Ayyampully"
-      },
-      "createdby" : {
-          "uid" : 1,
-          "login" : "rohith.ayyampully@gmail.com",
-          "name" : "Rohith Ayyampully"
-      },
-      "project" : {
-          "id" : 1,
-          "title" : "DEMIGOD",
-          "icon" : "D"
-      },
-    }
+    this.urlParms = match.params;
+    //this.state.ticketDetails = {}
+  }
+  componentWillMount() {
+    let url = `http://localhost:3030/api/v1/ticket?projectid=${this.urlParms.id}&ticketid=${this.urlParms.ticket}`
+    fetch(url)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            ticketDetails: result
+          });
+        },
+        (error) => {
+          this.setState({
+            ticketDetails: [],
+            error
+          });
+        }
+      )
   }
   render() {
-    let createddate = this.state.ticketDetails.createddate.toLocaleString();
-    let modifiedddate = this.state.ticketDetails.modifiedddate.toLocaleString();
+    if(!this.state.ticketDetails) return (<div className="detailview-wrap">Loading</div>);
+    let createddate = getLocaleDate(this.state.ticketDetails.createddate);
+    let modifiedddate = getLocaleDate(this.state.ticketDetails.modifiedddate);
     return (
     <div className="detailview-wrap">
       <div className="detailview box-3">
@@ -138,4 +80,7 @@ class Detailview extends Component {
   }
 }
 
+function getLocaleDate(data){
+    return new Date(data).toLocaleString();
+}
 export default Detailview;
