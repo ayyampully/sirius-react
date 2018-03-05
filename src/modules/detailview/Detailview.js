@@ -49,8 +49,9 @@ class Detailview extends Component {
         let label = watcher.login;
         let icon = '';
         if(watcher.name){
-            label = watcher.name.last+ ', '+ watcher.name.first;
-            let iconText = watcher.name.first.charAt(0) + watcher.name.last.charAt(0);
+            label = watcher.name;
+            var nameArray = watcher.name.split(' ');
+            let iconText = nameArray[0].charAt(0) + nameArray[1].charAt(0);
             icon = <span className={"icon color-" + i}>{iconText}</span>
         }
         watchers.push(

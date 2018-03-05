@@ -5,7 +5,7 @@ var fs = require('fs'),
 	mongoose = require('mongoose'),
 	lodash = require('lodash');
 
-var uri = "mongodb://sirius_user:BQkKcMLPHv5SQdfl@sirius-shard-00-00-32vi8.mongodb.net:27017,sirius-shard-00-01-32vi8.mongodb.net:27017,sirius-shard-00-02-32vi8.mongodb.net:27017/test?ssl=true&replicaSet=sirius-shard-0&authSource=admin";
+var uri = "mongodb://sirius_user:BQkKcMLPHv5SQdfl@sirius-shard-00-00-32vi8.mongodb.net:27017,sirius-shard-00-01-32vi8.mongodb.net:27017,sirius-shard-00-02-32vi8.mongodb.net:27017/siriusdb?ssl=true&replicaSet=sirius-shard-0&authSource=admin";
 
 var SiriusDB = require('./data/Schema')(mongoose, lodash);
 var dburl = 'mongodb://localhost:27017/siriusdb';	
