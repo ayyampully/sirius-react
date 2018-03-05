@@ -47,5 +47,5 @@ h4{
 .svg-wrap.scaled .total{opacity: 0}
 .total span{    display: block;
     font-size: 24px;}
-.view-more{    font-size: 12px;
+.svg-wrap .view-more{    font-size: 12px;
     float: right;}
