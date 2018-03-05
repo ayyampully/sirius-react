@@ -46,8 +46,15 @@ class Detailview extends Component {
 
     let watchers = []
     ticketDetails.watchers.forEach((watcher, i) => {
+        let label = watcher.login;
+        let icon = '';
+        if(watcher.name){
+            label = watcher.name.last+ ', '+ watcher.name.first;
+            let iconText = watcher.name.first.charAt(0) + watcher.name.last.charAt(0);
+            icon = <span className={"icon color-" + i}>{iconText}</span>
+        }
         watchers.push(
-            <li key={"icon-color-" + i}><span className={"icon color-" + i}>{watcher.icon}</span> {watcher.name.last}, {watcher.name.first}</li>
+            <li key={"icon-color-" + i}>{icon} {label}</li>
         )
     });
     return (

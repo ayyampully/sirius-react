@@ -84,9 +84,9 @@ module.exports = function(mongoose, _) {
 				uid: Number,
 				login: String,
 				name: {
-					first: String,
-					last: String
-				},
+                    first: String,
+                    last: String
+                },
 			}],
 			attachments: Array,
 			subtickets: Array,
@@ -368,53 +368,154 @@ module.exports = function(mongoose, _) {
 		// 	console.log('added')
 		// 	callback(true)
 		// })
-	// 	var ticket = {
-	// 		title: "some page",
-	// 		ticketid: "DEMIGOD-09",
-	// 		project: {
-	// 			id: 1,
-	// 			title: "DEMIGOD",
-	// 			icon: "D"
-	// 		},
-	// 		createddate: new Date(),
-	// 		modifiedddate: new Date(),
-	// 		createdby:{
-	// 			uid: 1,
-	// 			login: "rohith.ayyampully@gmail.com",
-	// 			name: "Rohith Ayyampully"
-	// 		},
-	// 		assignedto:{},
-	// 		status: "open",
-	// 		type: "bug",
-	// 		priority: "medium",
-	// 		watchers:[{
-	// 			uid: 1,
-	// 			login: "rohith.ayyampully@gmail.com",
-	// 			name: "Rohith Ayyampully"
-	// 		}],
-	// 		attachments: [],
-	// 		subtickets: [],
-	// 		tags: ['Array'],
-	// 		description: "This is the description of a demigod ticket. blah blah.",
-	// 		comments: [{
-	// 			message: "Someone going crazy",
-	// 			createddate: new Date(),
-	// 			createdby:{
-	// 			uid: 1,
-	// 			login: "rohith.ayyampully@gmail.com",
-	// 			name: "Rohith Ayyampully"
-	// 		}
-	// 		}]
-	// }
+		var ticket = {
+    "title" : "Please add the thumbnail for users",
+    "ticketid" : "DEMIGOD-01",
+    "createddate" : new Date("2016-11-14T11:20:48.486Z"),
+    "modifiedddate" : new Date("2017-04-14T09:24:06.369Z"),
+    "status" : "open",
+    "type" : "feature",
+    "priority" : "high",
+    "description" : "This is the description of a demigod ticket. blah blah. Donec urna neque, mattis at lorem et, volutpat tempor neque. Nunc ut imperdiet urna, sodales dictum erat. Integer sollicitudin mattis tortor, tempor tempus velit consectetur in. Vestibulum blandit ipsum eget lacus ultricies scelerisque. Quisque facilisis dictum consequat. Sed aliquet gravida fringilla. Aenean nulla diam, rutrum a molestie at, laoreet quis nulla. Donec nibh elit, luctus ac quam porttitor, ultricies vestibulum felis. Aenean commodo, metus ut elementum bibendum, risus sem condimentum massa, quis fermentum arcu nisi sit amet dui. In quam ex, tempor ut arcu at, eleifend auctor neque. Fusce volutpat nibh hendrerit orci semper dictum sit amet eu turpis.",
+    "comments" : [ 
+        {
+            "message" : "Someone going crazy",
+            "createddate" : new Date("2016-11-14T11:20:48.486Z"),
+            "createdby" : {
+                "uid" : 1,
+                "login" : "rohith.ayyampully@gmail.com",
+                "name" : "Rohith Ayyampully"
+            }
+        }, 
+        {
+            "message" : "Hellooo",
+            "createddate" : new Date("2016-11-14T11:57:28.548Z"),
+            "createdby" : {
+                "login" : "rohith.ayyampully@gmail.com",
+                "name" : "Ayyampully, Rohith",
+                "uid" : 1
+            }
+        }, 
+        {
+            "message" : "aas",
+            "createddate" : new Date(),
+            "createdby" : {
+                "login" : "rohith.ayyampully@gmail.com",
+                "name" : "Ayyampully, Rohith",
+                "uid" : 1
+            }
+        }
+    ],
+    "tags" : [ 
+        "Array"
+    ],
+    "subtickets" : [],
+    "attachments" : [],
+    "watchers" : [ 
+        {
+            "uid" : 1,
+            "login" : "rohith.ayyampully@gmail.com",
+            "icon" : "RA",
+            "name" : {
+                "first" : "Rohith",
+                "last" : "Ayyampully"
+            }
+        }, 
+        {
+            "uid" : 3,
+            "login" : "Koenigsegg.Agera@abc.com",
+            "icon" : "KA",
+            "name" : {
+                "first" : "Koenigsegg",
+                "last" : "Agera"
+            }
+        }
+    ],
+    "assignedto" : {
+        "uid" : 1,
+        "login" : "rohith.ayyampully@gmail.com",
+        "name" : "Rohith Ayyampully"
+    },
+    "createdby" : {
+        "uid" : 1,
+        "login" : "rohith.ayyampully@gmail.com",
+        "name" : "Rohith Ayyampully"
+    },
+    "project" : {
+        "id" : 1,
+        "title" : "DEMIGOD",
+        "icon" : "D"
+    },
+}
 
-
-var kk = new Users(user)
+var project= {
+    "title" : "DEMIGOD",
+    "projectid" : 1,
+    "flagurl" : "",
+    "created" : new Date(),
+    "coowner" : "Some One",
+    "description" : "This is the first project listed in sirius. This is going to be a blah. Nam sit amet sapien sodales, consequat magna nec, suscipit quam. Mauris scelerisque laoreet turpis, vitae congue nisl lobortis id. Aenean consectetur sapien purus, aliquet dictum ligula mattis vitae. Sed et elit scelerisque, eleifend neque ut, volutpat justo. Vivamus iaculis tincidunt justo sed blandit. Duis tellus arcu, posuere et dapibus sit amet, pretium ac tortor. Phasellus at lectus lobortis velit malesuada ultrices at a enim.",
+    "team" : [ 
+        {
+            "uid" : 1,
+            "role" : "owner",
+            "name" : {
+                "first" : "Rohith",
+                "last" : "Ayyampully"
+            },
+            "icon" : "RA"
+        }, 
+        {
+            "uid" : 2,
+            "role" : "member",
+            "name" : {
+                "first" : "Koenigsegg",
+                "last" : "Agera"
+            },
+            "icon" : "KA"
+        }, 
+        {
+            "uid" : 3,
+            "role" : "member",
+            "name" : {
+                "first" : "Porsche",
+                "last" : "Carrera"
+            },
+            "icon" : "PC"
+        }
+    ],
+    "owner" : {
+        "uid" : 1,
+        "login" : "rohith.ayyampully@gmail.com",
+        "name" : "Rohith Ayyampully"
+    },
+    "tags" : [ 
+        "some", 
+        "tag"
+    ],
+    "modules" : [ 
+        {
+            "label" : "Admin Module",
+            "count" : 1,
+        }, 
+        {
+            "label" : "User Module",
+            "count" : 3,
+        }
+    ]
+}
+/*var kk = new Users(user)
 		kk.save(function(e,s){
 			if (e) console.log(e) 
 			console.log('added')
 			callback(true)
+})*/
+var kk2 = new Tickets(ticket)
+		kk2.save(function(e,s){
+			if (e) console.log(e) 
+			console.log('added')
+			callback(true)
 })
-
 
 	}
 	return publicAPI;

@@ -8,45 +8,32 @@ class Listview extends Component {
     super();
     this.state = {}
     this.state.match = match;
-    this.state.ticketList = {
-      "title" : "DEMIGOD",
-      "owner" : {
-        "uid" : 1,
-        "login" : "rohith.ayyampully@gmail.com",
-        "name" : "Rohith Ayyampully"
-      },
-      "modules" : [ 
-        {
-            "label" : "Admin Module",
-            "count" : 1,
-        }, 
-        {
-            "label" : "User Module",
-            "count" : 3,
-        }
-      ],
-      "projectid": 1,
-      "tickets": [{
-        "title" : "Add the thumbnail for users",
-        "ticketid" : "DEMIGOD-01",
-        "createddate" : new Date("2017-11-14T11:20:48.486Z"),
-        "modifiedddate" : new Date("2018-02-14T09:24:06.369Z"),
-        "createdby" : {
-          "uid" : 1,
-          "login" : "rohith.ayyampully@gmail.com",
-          "name" : "Rohith Ayyampully"
+    this.state.ticketList = null
+  }
+  componentWillMount() {
+    let url = `http://localhost:3030/api/v1/getticketslist?projectid=${this.state.match.params.id}`
+    fetch(url)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            ticketList: result
+          });
         },
-        "status" : "open",
-        "type" : "feature",
-        "priority" : "high",
-      }]
-    }
+        (error) => {
+          this.setState({
+            ticketList: null,
+            error
+          });
+        }
+      )
   }
   gotoDetails(ticketId, e){
     e.preventDefault();
     console.log(ticketId);
   }
   render() {
+    if(!this.state.ticketList) return (<div className="list-wrapper">Loading</div>);
     let rows = [];
     this.state.ticketList.tickets.forEach(ticket => {
       let modifiedddate = ticket.modifiedddate.toLocaleString();
