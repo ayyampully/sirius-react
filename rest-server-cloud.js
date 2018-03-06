@@ -3,7 +3,27 @@ var fs = require('fs'),
 	express = require('express'),
 	http = require("http"),
 	mongoose = require('mongoose'),
-	lodash = require('lodash');
+	lodash = require('lodash'),
+    pushServer = require('socket.io'),
+    createStore = require('redux').createStore,
+    reducer = require('./store/reducer');
+
+var store = createStore(reducer);
+var io = new pushServer().attach(3031);
+
+store.subscribe( () => io.emit('state', store.getState()) );
+
+io.on('connection', (socket) => {
+    socket.emit('state', store.getState());
+    socket.on('action', store.dispatch.bind(store));
+});
+
+store.dispatch({type: 'NEW_COMMENT', payload: {
+    name: 'Rohith Ayyampully',
+    action: 'comment',
+    projectId: 1,
+    ticket: 'DEMIGOD-01'
+}});
 
 var uri = "mongodb://sirius_user:BQkKcMLPHv5SQdfl@sirius-shard-00-00-32vi8.mongodb.net:27017,sirius-shard-00-01-32vi8.mongodb.net:27017,sirius-shard-00-02-32vi8.mongodb.net:27017/siriusdb?ssl=true&replicaSet=sirius-shard-0&authSource=admin";
 

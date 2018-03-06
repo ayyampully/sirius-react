@@ -8,6 +8,7 @@ import './App.css';
 import './assets/font-awesome-4.6.3/css/font-awesome.min.css';
 
 import Store from './store/Store';
+import io from 'socket.io-client';
 
 class App extends Component {
   constructor(){
@@ -15,17 +16,16 @@ class App extends Component {
     this.initStore();
   }
   initStore(){
-    
+    const socket = io(`${window.location.protocol}//${window.location.hostname}:3031`);
+    socket.on('state', state => {
+      Store.dispatch({
+        type: 'NEW_COMMENT',
+        payload: state
+      });
+    });
     Store.subscribe(() => {
       console.log(JSON.stringify(Store.getState()));
     });
-    Store.dispatch({type: 'NEW_COMMENT', payload: {
-        name: 'Rohith Ayyampully',
-        action: 'comment',
-        projectId: 1,
-        ticket: 'DEMIGOD-01'
-    }});
-
   }
   render() {
     return (
