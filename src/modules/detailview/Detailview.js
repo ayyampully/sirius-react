@@ -9,6 +9,7 @@ class Detailview extends Component {
     this.state = {};
     this.urlParms = match.params;
     //this.state.ticketDetails = {}
+    
   }
   componentWillMount() {
     let url = `http://localhost:3030/api/v1/ticket?projectid=${this.urlParms.id}&ticketid=${this.urlParms.ticket}`
@@ -35,8 +36,20 @@ class Detailview extends Component {
       this.addNewComment(this.urlParms.ticket, comment);
     }
   }
-  addNewComment(ticketId, comment){
-    console.log(ticketId, comment)
+  addNewComment(ticketid, comment){
+
+    this.props.store.dispatch({
+      type: 'ADD_COMMENT',
+      payload: {
+        ticketid, 
+        comment
+      }
+    });
+    
+    
+  }
+  onEditClick(){
+    console.log(this)
   }
   render() {
     if(!this.state.ticketDetails) return (<div className="detailview-wrap">Loading</div>);
@@ -49,9 +62,9 @@ class Detailview extends Component {
         let label = watcher.login;
         let icon = '';
         if(watcher.name){
-            label = watcher.name;
-            var nameArray = watcher.name.split(' ');
-            let iconText = nameArray[0].charAt(0) + nameArray[1].charAt(0);
+            var name = watcher.name;
+            label = name.first + "," + name.last;
+            let iconText = name.first.charAt(0) + name.last.charAt(0);
             icon = <span className={"icon color-" + i}>{iconText}</span>
         }
         watchers.push(
@@ -67,7 +80,7 @@ class Detailview extends Component {
             <p className="breadcrumb"><a>{ticketDetails.project.title}/</a>{ticketDetails.ticketid}</p>
             <h2>{ticketDetails.title}</h2>
           </div>
-          <span className="edit-btn" ><i className="fa fa-pencil-square-o" aria-hidden="true"></i></span>
+          <span className="edit-btn" onClick={this.onEditClick.bind(this)} ><i className="fa fa-pencil-square-o" aria-hidden="true"></i></span>
         </div>
         <div className="details">
             <ul className="list">

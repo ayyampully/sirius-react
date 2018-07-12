@@ -15,15 +15,20 @@ store.subscribe( () => io.emit('state', store.getState()) );
 
 io.on('connection', (socket) => {
     socket.emit('state', store.getState());
-    socket.on('action', store.dispatch.bind(store));
+	socket.on('action', store.dispatch.bind(store));
+	socket.on('addComment', function(request){
+		if(request.notification.type === "ADD_COMMNET"){
+			store.dispatch({type: 'NEW_COMMENT', payload: {
+				name: 'Rohith Ayyampully',
+				action: 'comment',
+				projectId: 1,
+				ticket: 'DEMIGOD-01'
+			}});
+		}
+	});
 });
 
-store.dispatch({type: 'NEW_COMMENT', payload: {
-    name: 'Rohith Ayyampully',
-    action: 'comment',
-    projectId: 1,
-    ticket: 'DEMIGOD-01'
-}});
+
 
 var uri = "mongodb://sirius_user:BQkKcMLPHv5SQdfl@sirius-shard-00-00-32vi8.mongodb.net:27017,sirius-shard-00-01-32vi8.mongodb.net:27017,sirius-shard-00-02-32vi8.mongodb.net:27017/siriusdb?ssl=true&replicaSet=sirius-shard-0&authSource=admin";
 
@@ -114,7 +119,8 @@ router.put('/ticket', jsonParser, function(req, res){
 router.post('/addcomment', jsonParser, function(req, res){
 	console.log('Add comment request');
 	let ticketid = req.param('ticketid', null);
-	let comment = req.body.comment;
+	console.log(req)
+	let comment = req.param('comment', "");
 	let activeUser = 1//todo - get from user session
 	//let projectid = req.param('projectid', null);
 	SiriusDB.addComment({ticketid, comment, activeUser}, function(success) {

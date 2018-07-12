@@ -8,6 +8,7 @@ import './App.css';
 import './assets/font-awesome-4.6.3/css/font-awesome.min.css';
 
 import Store from './store/Store';
+
 import io from 'socket.io-client';
 
 class App extends Component {
@@ -18,13 +19,14 @@ class App extends Component {
   initStore(){
     const socket = io(`${window.location.protocol}//${window.location.hostname}:3031`);
     socket.on('state', state => {
-      Store.dispatch({
+      /*Store.dispatch({
         type: 'NEW_COMMENT',
         payload: state
-      });
+      });*/
     });
     Store.subscribe(() => {
       console.log(JSON.stringify(Store.getState()));
+      socket.emit("addComment", Store.getState())
     });
   }
   render() {
@@ -48,11 +50,11 @@ class App extends Component {
         </div>
         
           <Router>
-            <div className="main-content">
-              <Route exact path="/" component={Overview}/>
-              <Route exact path="/projects/:id" component={Listview}/>
-              <Route exact path="/projects/:id/:ticket" component={Detailview}/>
-            </div>
+              <div className="main-content">
+                <Route exact path="/" render={(props) => <Overview {...props} store={Store} />}/>
+                <Route exact path="/projects/:id" component={Listview}/>
+                <Route exact path="/projects/:id/:ticket" render={(props) => <Detailview {...props} store={Store} />} />
+              </div>
           </Router>
         
       </div>
