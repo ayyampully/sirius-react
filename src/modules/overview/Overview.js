@@ -41,8 +41,34 @@ class Overview extends Component {
       ],
       "total":4,
     }
+
+    
+  }
+  componentDidMount(){
+   /* this.props.store.subscribe(() => {
+      console.log("getState")
+      let state = this.props.store.getState();
+      if(state.notification.type === "NEW_COMMENT"){
+        this.setState((prevState)=>{
+          return {list: prevState.list.push(<li><span>AJ</span> <p><a>Ayyampully, Rohith</a> added <a>Agera</a>.</p> </li>)}
+        })
+      }
+    });*/
+
+    this.props.store.subscribe(() => {
+      console.log(JSON.stringify(this.props.store.getState()));
+      //socket.emit("addComment", Store.getState())
+    });
+  }
+  componentDidUpdate(){
+    console.log("componentDidUpdate()")
   }
   render() {
+    this.state.list = [<li><span>RA</span> <p><a>Ayyampully, Rohith</a> updated <a>DEMIGOD-1</a></p> </li>,
+                <li><span>RA</span> <p><a>Ayyampully, Rohith</a> added <a>Agera</a> to project blah blah.</p> </li>];
+    
+      
+    
     return (
       <div className="overview">
         <div className="row"> <div className="box-2">
@@ -51,19 +77,8 @@ class Overview extends Component {
         </div>
         <div className="box-4 notifications">
           <ul>
-            <li><span>RA</span> <p><a>Ayyampully, Rohith</a> updated <a>DEMIGOD-1</a></p> </li>
-            <li><span>RA</span> <p><a>Ayyampully, Rohith</a> added <a>Agera</a> to project blah blah.</p> </li>
-            <li><span>RA</span> <p><a>Ayyampully, Rohith</a> updated <a>DEMIGOD-1</a></p> </li>
-            <li><span>RA</span> <p><a>Ayyampully, Rohith</a> updated <a>DEMIGOD-1</a></p> </li>
-            <li><span>RA</span> <p><a>Ayyampully, Rohith</a> updated <a>DEMIGOD-1</a></p> </li>
-            <li><span>RA</span> <p><a>Ayyampully, Rohith</a> updated <a>DEMIGOD-1</a></p> </li>
-            <li><span>RA</span> <p><a>Ayyampully, Rohith</a> updated <a>DEMIGOD-1</a></p> </li>
-            <li><span>RA</span> <p><a>Ayyampully, Rohith</a> updated <a>DEMIGOD-1</a></p> </li>
-            <li><span>RA</span> <p><a>Ayyampully, Rohith</a> updated <a>DEMIGOD-1</a></p> </li>
-            <li><span>RA</span> <p><a>Ayyampully, Rohith</a> updated <a>DEMIGOD-1</a></p> </li>
-            <li><span>RA</span> <p><a>Ayyampully, Rohith</a> updated <a>DEMIGOD-1</a></p> </li>
-            <li><span>RA</span> <p><a>Ayyampully, Rohith</a> updated <a>DEMIGOD-1</a></p> </li>
-            </ul>
+            {this.state.list}
+          </ul>
         </div>
         <div className="box-4 members">
             <h4>Members</h4>

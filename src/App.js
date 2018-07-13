@@ -19,13 +19,14 @@ class App extends Component {
   initStore(){
     const socket = io(`${window.location.protocol}//${window.location.hostname}:3031`);
     socket.on('state', state => {
+      console.log(state)
       /*Store.dispatch({
         type: 'NEW_COMMENT',
         payload: state
       });*/
     });
     Store.subscribe(() => {
-      console.log(JSON.stringify(Store.getState()));
+      //console.log(JSON.stringify(Store.getState()));
       socket.emit("addComment", Store.getState())
     });
   }

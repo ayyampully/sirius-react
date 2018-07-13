@@ -11,13 +11,17 @@ var fs = require('fs'),
 var store = createStore(reducer);
 var io = new pushServer().attach(3031);
 
-store.subscribe( () => io.emit('state', store.getState()) );
+store.subscribe( () => {
+console.log("-----------------------------------------------------sss------------------------------")
+	io.emit('state', store.getState())
+} );
 
 io.on('connection', (socket) => {
     socket.emit('state', store.getState());
 	socket.on('action', store.dispatch.bind(store));
-	socket.on('addComment', function(request){
-		if(request.notification.type === "ADD_COMMNET"){
+	/*socket.on('addComment', function(request){
+		if(request.notification.type === "ADD_COMMENT"){
+			console.log(request.notification.type)
 			store.dispatch({type: 'NEW_COMMENT', payload: {
 				name: 'Rohith Ayyampully',
 				action: 'comment',
@@ -25,7 +29,7 @@ io.on('connection', (socket) => {
 				ticket: 'DEMIGOD-01'
 			}});
 		}
-	});
+	});*/
 });
 
 
