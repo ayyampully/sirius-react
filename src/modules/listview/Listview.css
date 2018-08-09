@@ -1,20 +1,58 @@
-.list-wrapper{display: flex; flex: 1; margin: 20px;}
-.nav-list{width:24%; float:left; }
-.nav-list .btn{float:left; }
-.modules{margin-top: 28px; width: 100%;
-    float: left;}
-.modules li{float: left; width: 100%; font-size: 16px;
-    padding: 9px 20px 9px 12px;}
-.modules li span{font-family: 'open_sanssemibold'}
-.modules li.active{background: #f9f9f9}
-.list-view{width:76%; float:left; 
-    background: #f9f9f9;}
+.list-wrapper {
+  display: flex;
+  flex: 1;
+  margin: 20px;
+}
+.nav-list {
+  width: 24%;
+  float: left;
+}
+.nav-list .btn {
+  float: left;
+}
+.modules {
+  margin-top: 28px;
+  width: 100%;
+  float: left;
+}
+.modules li {
+  float: left;
+  width: 100%;
+  font-size: 16px;
+  padding: 9px 20px 9px 12px;
+}
+.modules li span {
+  font-family: "open_sanssemibold";
+}
+.modules li.active {
+  background: #f9f9f9;
+}
+.list-view {
+  width: 76%;
+  float: left;
+  background: #f9f9f9;
+}
 
-.table table{width:100%; padding: 0 20px;}
-.table th{text-align: left;
-    padding: 12px 10px 11px;
-    border-bottom: 1px solid #ddd; }
-.table td{padding: 9px 10px;}
-.table .checkbox{text-align: center; width: 20px;}
-.table tr:hover td{background: #eee}
-.filter{width:16%; float:left; }
+.table table {
+  width: 100%;
+  padding: 0 20px;
+}
+.table th {
+  text-align: left;
+  padding: 12px 10px 11px;
+  border-bottom: 1px solid #ddd;
+}
+.table td {
+  padding: 9px 10px;
+}
+.table .checkbox {
+  text-align: center;
+  width: 20px;
+}
+.table tr:hover td {
+  background: #eee;
+}
+.filter {
+  width: 16%;
+  float: left;
+}
