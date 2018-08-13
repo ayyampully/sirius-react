@@ -92,7 +92,10 @@ class Overview extends Component {
             <p>{this.state.projectData.description}</p>
           </div>
           <div className="box-4 notifications">
-            <ul>{this.state.list}</ul>
+            <ul>
+              {this.state.list}
+              <li>{this.props.data.comment}</li>
+            </ul>
           </div>
           <div className="box-4 members">
             <h4>Members</h4>

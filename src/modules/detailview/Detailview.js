@@ -30,21 +30,32 @@ class Detailview extends Component {
         }
       );
   }
-  addCommentHandler(e) {
-    let comment = document.getElementById("comments").value;
+  addCommentHandler = comment => {
     if (comment.length) {
       comment = comment.replace(/\r?\n/g, "<br />");
       this.addNewComment(this.urlParms.ticket, comment);
     }
-  }
+  };
   addNewComment(ticketid, comment) {
-    this.props.store.dispatch({
+    /*this.props.store.dispatch({
       type: "ADD_COMMENT",
       payload: {
         ticketid,
         comment
       }
-    });
+    });*/
+    fetch(`http://localhost:3030/api/v1/addcomment?ticketid=${ticketid}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ comment })
+    }).then(
+      res => {
+        console.log(res);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
   onEditClick() {
     console.log(this);
@@ -58,16 +69,13 @@ class Detailview extends Component {
     let watchers = [];
     ticketDetails.watchers.forEach((watcher, i) => {
       let label = watcher.login;
-      let icon = "";
+      let iconText = "RA";
       if (watcher.name) {
-        var name = watcher.name;
-        label = name.first + "," + name.last;
-        let iconText = name.first.charAt(0) + name.last.charAt(0);
-        icon = <span className={"icon color-" + i}>{iconText}</span>;
+        label = watcher.name;
       }
       watchers.push(
         <li key={"icon-color-" + i}>
-          {icon} {label}
+          <span className={"icon color-" + i}>{iconText}</span> {label}
         </li>
       );
     });
@@ -137,7 +145,7 @@ class Detailview extends Component {
             <h4>Comments</h4>
             <Comments
               comments={ticketDetails.comments}
-              addCommentHandler={this.addCommentHandler.bind(this)}
+              addCommentHandler={this.addCommentHandler}
             />
           </div>
         </div>

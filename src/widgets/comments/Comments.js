@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import "./Comments.css";
 
 class Comments extends Component {
-  constructor(props) {
-    super(props);
-    this.addCommentHandler = this.props.addCommentHandler;
-  }
+  state = {
+    comment: ""
+  };
+  handleChange = ({ currentTarget }) => {
+    const comment = currentTarget.value;
+    this.setState({ comment });
+  };
   render() {
     let comments = [];
     this.props.comments.forEach((comment, i) => {
@@ -24,13 +27,25 @@ class Comments extends Component {
         </div>
       );
     });
+    const { comment } = this.state;
     return (
       <div className="comments-wrap">
         <div className="comments-list">{comments}</div>
 
         <div className="comments-add-form">
-          <textarea placeholder="Type here..." className="text" id="comments" />
-          <button onClick={this.addCommentHandler} className="btn">
+          <textarea
+            placeholder="Type here..."
+            value={comment}
+            onChange={this.handleChange}
+            className="text"
+            id="comments"
+          />
+          <button
+            onClick={() => {
+              this.props.addCommentHandler(comment);
+            }}
+            className="btn"
+          >
             Send
           </button>
         </div>

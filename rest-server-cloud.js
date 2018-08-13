@@ -21,17 +21,15 @@ store.subscribe(() => {
 io.on("connection", socket => {
   socket.emit("state", store.getState());
   socket.on("action", store.dispatch.bind(store));
-  /*socket.on('addComment', function(request){
-		if(request.notification.type === "ADD_COMMENT"){
-			console.log(request.notification.type)
-			store.dispatch({type: 'NEW_COMMENT', payload: {
-				name: 'Rohith Ayyampully',
-				action: 'comment',
-				projectId: 1,
-				ticket: 'DEMIGOD-01'
-			}});
-		}
-	});*/
+  socket.on("addComment", function(request) {
+    if (request.notification.type === "ADD_COMMENT") {
+      console.log(request.notification);
+      store.dispatch({
+        type: "NEW_COMMENT",
+        payload: request.notification.payload
+      });
+    }
+  });
 });
 
 var uri =
@@ -45,7 +43,7 @@ var router = express.Router();
 var bodyParser = require("body-parser");
 
 app.use(function(request, response, next) {
-  response.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  response.header("Access-Control-Allow-Origin", "http://localhost:4040");
   response.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -130,16 +128,20 @@ router.put("/ticket", jsonParser, function(req, res) {
 router.post("/addcomment", jsonParser, function(req, res) {
   console.log("Add comment request");
   let ticketid = req.param("ticketid", null);
-  console.log(req);
-  let comment = req.param("comment", "");
+  let comment = req.body.comment;
   let activeUser = 1; //todo - get from user session
   //let projectid = req.param('projectid', null);
+  if (!comment) res.send([]).status(200);
   SiriusDB.addComment({ ticketid, comment, activeUser }, function(success) {
     if (!success) {
       var err = { status: 404, message: "Invalid ticket id" };
       res.send(404, err);
       return;
     } else {
+      store.dispatch({
+        type: "NEW_COMMENT",
+        payload: { ticketid, comment, activeUser }
+      });
       res.send(success).status(200);
     }
   });

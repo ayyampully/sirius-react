@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
 import Overview from "./modules/overview/Overview";
 import Listview from "./modules/listview/Listview";
 import Detailview from "./modules/detailview/Detailview";
@@ -16,17 +16,16 @@ class App extends Component {
     super();
     this.initStore();
   }
-
+  state = {
+    data: { comment: "Test" }
+  };
   initStore() {
     const socket = io(
       `${window.location.protocol}//${window.location.hostname}:3031`
     );
     socket.on("state", state => {
       console.log(state);
-      /*Store.dispatch({
-        type: 'NEW_COMMENT',
-        payload: state
-      });*/
+      this.setState({ data: state });
     });
     Store.subscribe(() => {
       //console.log(JSON.stringify(Store.getState()));
@@ -76,17 +75,21 @@ class App extends Component {
 
           <Router>
             <div className="main-content">
-              <Route
-                exact
-                path="/"
-                render={props => <Overview {...props} store={Store} />}
-              />
-              <Route exact path="/projects/:id" component={Listview} />
-              <Route
-                exact
-                path="/projects/:id/:ticket"
-                render={props => <Detailview {...props} store={Store} />}
-              />
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  render={props => (
+                    <Overview {...props} data={this.state.data} store={Store} />
+                  )}
+                />
+                <Route exact path="/projects/:id" component={Listview} />
+                <Route
+                  exact
+                  path="/projects/:id/:ticket"
+                  render={props => <Detailview {...props} store={Store} />}
+                />
+              </Switch>
             </div>
           </Router>
         </div>
