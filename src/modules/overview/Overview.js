@@ -5,24 +5,7 @@ import "./Overview.css";
 class Overview extends Component {
   constructor() {
     super();
-    this.state = {
-      projectData: {
-        title: "DemiGod-v1",
-        projectId: 1,
-        description:
-          "This is the first project listed in sirius. Praesent nisl est, congue sollicitudin justo ac, aliquam bibendum arcu. Nulla vel magna et ex sollicitudin varius. Sed interdum fringilla lacus. Suspendisse in ante id nisi vehicula venenatis sed vitae elit. Aliquam tristique a leo ac fermentum. Praesent gravida sagittis mauris, id pellentesque sapien tincidunt vitae.",
-        flagurl: ""
-      },
-      member: {
-        name: {
-          first: "Rohith",
-          last: "Ayyampully"
-        },
-        icon: "RA",
-        className: "icon color-1",
-        role: "UI Developer"
-      }
-    };
+    this.state = {};
 
     this.features = {
       label: "Features",
@@ -77,39 +60,41 @@ class Overview extends Component {
         </p>{" "}
       </li>
     ];
-
+    const { projectData, activeUser: member, notifications } = this.props.data;
     return (
       <div className="overview">
         <div className="row">
-          {" "}
           <div className="box-2">
             <h1>
-              {this.state.projectData.title}{" "}
+              {projectData.title}
               <span>
-                <img src={this.state.projectData.flagurl} />
+                <img src={projectData.flagurl} />
               </span>
             </h1>
-            <p>{this.state.projectData.description}</p>
+            <p>{projectData.description}</p>
           </div>
           <div className="box-4 notifications">
             <ul>
-              {this.state.list}
-              <li>{this.props.data.comment}</li>
+              {notifications.map(n => (
+                <li>
+                  <span>RA</span>
+                  <p>
+                    <a>{n.name}</a> {n.message}
+                  </p>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="box-4 members">
             <h4>Members</h4>
             <ul>
               <li>
-                <span className={this.state.member.className}>
-                  {this.state.member.icon}
-                </span>
+                <span className={member.className}>{member.icon}</span>
                 <div className="desc">
                   <p>
-                    {this.state.member.name.last},{" "}
-                    {this.state.member.name.first}
+                    {member.name.last}, {member.name.first}
                   </p>
-                  <span>{this.state.member.role}</span>
+                  <span>{member.role}</span>
                 </div>
               </li>
             </ul>
@@ -121,12 +106,9 @@ class Overview extends Component {
           </div>
           <Chartbox
             projectData={this.features}
-            projectId={this.state.projectData.projectId}
+            projectId={projectData.projectId}
           />
-          <Chartbox
-            projectData={this.bugs}
-            projectId={this.state.projectData.projectId}
-          />
+          <Chartbox projectData={this.bugs} projectId={projectData.projectId} />
         </div>
       </div>
     );

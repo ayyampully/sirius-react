@@ -17,18 +17,41 @@ class App extends Component {
     this.initStore();
   }
   state = {
-    data: { comment: "Test" }
+    projectData: {
+      title: "DemiGod-v1",
+      projectId: 1,
+      description:
+        "This is the first project listed in sirius. Praesent nisl est, congue sollicitudin justo ac, aliquam bibendum arcu. Nulla vel magna et ex sollicitudin varius. Sed interdum fringilla lacus. Suspendisse in ante id nisi vehicula venenatis sed vitae elit. Aliquam tristique a leo ac fermentum. Praesent gravida sagittis mauris, id pellentesque sapien tincidunt vitae.",
+      flagurl: ""
+    },
+    activeUser: {
+      name: {
+        first: "Rohith",
+        last: "Ayyampully"
+      },
+      icon: "RA",
+      className: "icon color-1",
+      role: "UI Developer"
+    },
+    ticketList: [],
+    activeTicket: {},
+    notifications: [{ name: "Rohith Ayyapully", message: " added a comment." }]
   };
   initStore() {
     const socket = io(
       `${window.location.protocol}//${window.location.hostname}:3031`
     );
     socket.on("state", state => {
-      console.log(state);
-      this.setState({ data: state });
+      console.log("socket.on", state);
+      let { notifications } = this.state;
+      notifications.push({
+        name: "Rohith Ayyapully",
+        message: " " + state.comment
+      });
+      this.setState({ notifications });
     });
     Store.subscribe(() => {
-      //console.log(JSON.stringify(Store.getState()));
+      console.log("Store.subscribe", JSON.stringify(Store.getState()));
       socket.emit("addComment", Store.getState());
     });
   }
@@ -80,14 +103,16 @@ class App extends Component {
                   exact
                   path="/"
                   render={props => (
-                    <Overview {...props} data={this.state.data} store={Store} />
+                    <Overview {...props} data={this.state} store={Store} />
                   )}
                 />
                 <Route exact path="/projects/:id" component={Listview} />
                 <Route
                   exact
                   path="/projects/:id/:ticket"
-                  render={props => <Detailview {...props} store={Store} />}
+                  render={props => (
+                    <Detailview {...props} data={this.state} store={Store} />
+                  )}
                 />
               </Switch>
             </div>
